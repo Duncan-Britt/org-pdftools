@@ -140,7 +140,7 @@ with `TO-EXPORT' when exporting links. Also use reverse translation from
 
 (defun org-pdftools-abbreviate-file-name (path)
   "Abbreviate `PATH' using `org-pdftools-path-translations'."
-  (let ((translation-rule (find-if (lambda (rule)
+  (let ((translation-rule (cl-find-if (lambda (rule)
                                      (cl-destructuring-bind (from . to) rule
                                        (string-prefix-p to path)))
                                    org-pdftools-path-translations)))
@@ -155,7 +155,7 @@ with `TO-EXPORT' when exporting links. Also use reverse translation from
   "Expand `PATH' using `RULES'.
 - `RULES' is an alist of (FROM . TO).
 If no rules match, `PATH' is returned as it is."
-  (let ((translation-rule (find-if (lambda (rule)
+  (let ((translation-rule (cl-find-if (lambda (rule)
                                      (cl-destructuring-bind (from . to) rule
                                        (string-prefix-p from path)))
                                    rules)))
